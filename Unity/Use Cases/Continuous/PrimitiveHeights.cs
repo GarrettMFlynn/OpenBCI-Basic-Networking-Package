@@ -34,15 +34,16 @@ public class PrimitiveScale : MonoBehaviour
 
         for (int i = 0; i < numFFTs; i++)
         {
-            GameObject _instanceSampleCube = GameObject.CreatePrimitive(PrimitiveType.Cube); // type of primitive
+            GameObject _instanceSampleCube = GameObject.CreatePrimitive(PrimitiveType.Sphere); // type of primitive
             _instanceSampleCube.transform.position = this.transform.position;
             var cubeRenderer = _instanceSampleCube.GetComponent<Renderer>();
-            cubeRenderer.material.color = colors[i % 5];
+            //float opacity = (float)i / (float)numFFTs;
+            cubeRenderer.material.color = new colors[i%5];
             cubeRenderer.material.SetColor("_EmissionColor", colors[i % 5]);
             _instanceSampleCube.transform.parent = this.transform;
             _instanceSampleCube.name = "SampleCube" + i;
-            this.transform.eulerAngles = new Vector3(0, 0, 0);
-            _instanceSampleCube.transform.position = new Vector3(-25+(10 * i), 0, (25 - (10 * i)));
+            this.transform.eulerAngles = new Vector3(0, -(180 / (float)numFFTs) * (float)i, 0);
+            _instanceSampleCube.transform.position = Vector3.forward * 100;
             _sampleCube[i] = _instanceSampleCube;
         }
     }
