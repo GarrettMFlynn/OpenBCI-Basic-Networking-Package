@@ -18,14 +18,14 @@ streams = resolve_stream('type','EEG')
 inlet = StreamInlet(streams[0])
 channel_data = {}
 
-for i in range(5): # how many iterations. Change to a while True
+for i in range(1): # how many iterations. Change to a while True
 
-    for i in range(16): #number of channels
+    for j in range(125): #number of channels
         sample, timestamp = inlet.pull_sample()
-        if i not in channel_data:
-            channel_data[i] = sample
+        if j not in channel_data:
+            channel_data[j] = [sample]
         else:
-            channel_data[i].append(sample)
+            channel_data[j].append(sample)
 
     fps_counter.append(time.time() - last_print)
     last_print = time.time()
@@ -36,7 +36,7 @@ for i in range(5): # how many iterations. Change to a while True
 # Not working for more than one sample
 for chan in channel_data:
     print(channel_data[chan])
-    plt.plot(channel_data[chan])
+    plt.plot(np.transpose(channel_data[chan]))
 plt.show()
 
 # OPENBCI EXAMPLE 2
