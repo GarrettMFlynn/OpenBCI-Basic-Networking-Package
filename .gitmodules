@@ -1,3 +1,5 @@
 [submodule "LSL4Unity"]
 	path = LSL4Unity
 	url = https://github.com/labstreaminglayer/LSL4Unity.git
+[submodule "Python/Sentdex Template"]
+	url = https://github.com/Sentdex/BCI
