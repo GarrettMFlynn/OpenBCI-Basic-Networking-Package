@@ -18,7 +18,7 @@ streams = resolve_stream('type','EEG')
 inlet = StreamInlet(streams[0])
 channel_data = {}
 
-for i in range(1): # how many iterations. Change to a while True
+for _ in range(1): # how many iterations. Change to a while True
 
     for j in range(125): #number of channels
         sample, timestamp = inlet.pull_sample()
@@ -34,9 +34,9 @@ for i in range(1): # how many iterations. Change to a while True
 
 
 # Not working for more than one sample
-for chan in channel_data:
+for chan, value in channel_data.items():
     print(channel_data[chan])
-    plt.plot(np.transpose(channel_data[chan]))
+    plt.plot(np.transpose(value))
 plt.show()
 
 # OPENBCI EXAMPLE 2
